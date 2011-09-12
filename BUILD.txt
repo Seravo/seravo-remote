@@ -1,0 +1,16 @@
+cd linux-tuki-etayhteys/
+python setup.py sdist
+
+export DEBFULLNAME="Otto Kekäläinen"
+export DEBEMAIL="otto.kekalainen@linux-tuki.fi"
+
+cd dist
+tar -xf linux-tuki-etayhteys-2.1.tar.gz 
+cd linux-tuki-etayhteys-2.1/
+# only on first time
+dh_make -c gpl -i -f ../linux-tuki-etayhteys-2.1.tar.gz 
+
+# edit changelog
+dch -e 
+
+debuild

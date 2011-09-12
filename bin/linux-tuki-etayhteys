@@ -1,0 +1,217 @@
+#!/usr/bin/env python
+# -* coding: utf-8 *-
+
+# Linux-tuki.fi etäyhteys
+# Copyright (C) 2008 Osma Suominen / Osuuskunta Sange <osma.suominen@sange.fi>
+# Copyright (C) 2010 Otto Kekäläinen / Osuuskunta Sange <otto.kekalainen@sange.fi>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+import gtk
+import time
+import subprocess
+import sys
+import random
+
+try:
+  import pxssh
+except ImportError:
+  print >>sys.stderr, "Tämä ohjelma vaatii pexpect-moduulin."
+  print >>sys.stderr, "Voit asentaa sen komennolla: apt-get install python-pexpect"
+  sys.exit(1)
+
+SSHSERVER = "linux-tuki.fi"
+SSHUSER = "etayhteys"
+SSHOPTS = ":localhost:5900"
+SSHPORT = random.randint(5900,5999)
+
+X11VNC = "/usr/bin/x11vnc"
+KILLX11VNC = "/usr/bin/killall"
+
+PIDOF = "/bin/pidof"
+X11VNCTIMEOUT = 30
+
+HELPTEXT = "Muodostaa etäyhteyden, jonka " + \
+           "kautta Linux-tuki.fi:n tukihenkilö pääsee käsiksi \n" + \
+           "tietokoneeseesi ja auttaa sinua ongelman ratkaisemisessa."
+
+class pxsshFalselogin (pxssh.pxssh):
+  """a version of pxssh that works with a falselogin shell"""
+  
+  def __init__(self):
+    pxssh.pxssh.__init__(self)
+  
+  def set_unique_prompt(self, optional_prompt=None):
+    return 1
+  
+  def logout(self):
+    self.sendline("")
+    self.expect(pxssh.EOF)
+
+class Etayhteys:
+  ssh = None
+  remote_access_state = 'false'
+  view_only_state = 'true'
+  local_only_state = 'false'
+  
+  def __init__(self):
+    self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
+    self.window.set_title("Linux-tuki.fi:n etäyhteys")
+    
+    # huolehdi että ohjelma voidaan sulkea siististi
+    self.window.connect("destroy", self.sulje)
+    
+    # set up user interface
+    vbox = gtk.VBox()
+    self.hbox_entries = gtk.HBox(homogeneous=False, spacing=12)
+    self.hbox_message = gtk.HBox(homogeneous=False, spacing=12)
+    
+    self.salasana_entry = gtk.Entry()
+    self.salasana_entry.set_visibility(False)
+    self.salasana_entry.connect("activate", self.avaa, None)
+    self.hbox_entries.pack_start(self.salasana_entry, expand=False)
+    
+    avaa_btn = gtk.Button("_Avaa etäyhteys")
+    avaa_btn.connect("clicked", self.avaa, None)
+    self.hbox_entries.pack_start(avaa_btn, expand=False)    
+
+    self.viesti = gtk.Label()
+    self.viesti.set_markup("Anna tukihenkilön kertoma salasana:")
+    self.hbox_message.pack_start(self.viesti, expand=False)
+    
+    vbox.pack_start(self.hbox_message, expand=False)
+    vbox.pack_start(self.hbox_entries, expand=False)
+    
+    self.window.add(vbox)
+    self.window.set_border_width(48)
+
+    self.window.show_all()
+    
+  def avaa(self, widget, data=None):
+    
+    print "Avataan SSH-yhteys..."
+    self.hbox_entries.hide()
+    self.viesti.set_markup("Avataan etäyhteyttä...")
+    
+    # huolehditaan siitä että GUI ehtii piirtyä
+    while gtk.events_pending():
+      gtk.main_iteration(False)
+    
+    success = False
+    error = None
+    
+    try:
+      self.ssh = pxsshFalselogin()
+      password = self.salasana_entry.get_text()
+      success = self.ssh.login("-R %s%s %s" % (SSHPORT, SSHOPTS, SSHSERVER), SSHUSER, password)
+    except Exception, e:
+      error = str(e)
+      print error
+    
+    # normaalisti tulee aina aikavirhe, sillä -N -optiolle SSH ei anna mitään shelliä
+    if (error != "Timeout exceeded in read_nonblocking()."):
+      self.ssh = None
+      # näytä virheilmo
+      self.viesti.set_markup("Etäyhteyden avaus epäonnistui.\nSyötä salasana uudestaan:")
+      self.hbox_entries.show()
+      self.salasana_entry.grab_focus()
+      return
+    
+    # käynnistä vino
+    
+    print "Otetaan käyttöön etätyöpöytä..."
+    
+    # huolehditaan siitä että GUI ehtii piirtyä
+    while gtk.events_pending():
+      gtk.main_iteration(False)
+    
+    try:
+      gct = subprocess.Popen([X11VNC, "-localhost", "-nopw", "-bg"])
+      ret = gct.wait()
+    except Exception, e:
+      ret = -1
+      
+    if ret != 0:
+      # siivoa ssh-yhteys pois
+      self.sammuta_ssh()
+      
+      # näytä virheilmo
+      self.viesti.set_markup("Virhe etätyöpöydän käyttöönotossa: X11VNC-palvelimen käynnistys epäonnistui.")
+      return
+      
+    # odota X11VNC:n käynnistymistä
+    c = X11VNCTIMEOUT
+    success = False
+    while c > 0:
+      po = subprocess.Popen([PIDOF, "x11vnc"], stdout=subprocess.PIPE)
+      (out, err) = po.communicate()
+      if out.strip() != '':
+        success = True
+        break
+      
+      c -= 1
+      time.sleep(1)
+    
+    if not success:
+      self.sammuta_ssh()
+      self.viesti.set_markup("Virhe etätyöpöydän käyttöönotossa: X11VNC ei käynnisty.")
+      return
+          
+    
+    # onnistui, aseta kälin tila sen mukaisesti    
+    print "Etäyhteys on auki, portti: %s" % SSHPORT
+    
+    self.viesti.set_markup("Etäyhteys on auki portissa %s.\nNäet ruudullasi kaiken mitä tukihenkilö tekee.\nVoit sulkea etäyhteysohjelman koska tahansa." % SSHPORT)
+    
+  def sammuta_x11vnc(self):
+    try:
+      gct = subprocess.Popen([KILLX11VNC, "x11vnc"])
+      ret = gct.wait()
+    except Exception, e:
+      pass
+  
+  
+  def sammuta_ssh(self):
+    if self.ssh is None: return
+    self.ssh.logout()
+    self.ssh = None
+  
+  
+  def sulje(self, widget, data=None):
+    print("Suljetaan ohjelmaa...")
+    self.viesti.set_markup("Katkaistaan etäyhteyttä") # ei toimi, miksi?
+    time.sleep(2)
+  
+    # sammuta vino, ellei se ollut jo valmiiksi päällä
+    if self.remote_access_state == 'false':
+      print "Otetaan etätyöpöytä pois käytöstä..."
+      self.sammuta_x11vnc()
+    
+    # sammuta SSH
+    print "Katkaistaan SSH-yhteys..."
+    self.sammuta_ssh()
+    
+    gtk.main_quit()
+    return True
+  
+  
+  def main(self):
+    gtk.main()
+
+
+if __name__ == '__main__':
+  eta = Etayhteys()
+  eta.main()
+

@@ -1,0 +1,11 @@
+[Desktop Entry] 
+Encoding=UTF-8
+Name=Linux-tuki.fi - Avaa etäyhteys
+Version=1.0
+Comment=Etäyhteys Linux-tuki.fi:n asiakkaille
+GenericName=linux-tuki-etayhteys
+Terminal=false
+Icon=/usr/share/pixmaps/lti.png
+Type=Application
+Exec=/usr/bin/linux-tuki-etayhteys
+Categories=Network
