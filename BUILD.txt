@@ -1,4 +1,7 @@
 cd linux-tuki-etayhteys/
+
+# packages current source as a tar.gz with version name
+# only file added to current directory is MANIFEST
 python setup.py sdist
 
 export DEBFULLNAME="Otto Kekäläinen"

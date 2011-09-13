@@ -1,0 +1,16 @@
+Source: linux-tuki-etayhteys
+Section: x11
+Priority: optional
+Maintainer: Otto Kekäläinen <otto.kekalainen@linux-tuki.fi>
+Build-Depends: debhelper (>= 7.0.50~)
+Standards-Version: 3.9.1
+Homepage: http://linux-tuki.fi/
+#Vcs-Git: git://git.debian.org/collab-maint/linux-tuki-etayhteys.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/linux-tuki-etayhteys.git;a=summary
+
+Package: linux-tuki-etayhteys
+Architecture: all
+Depends: ${misc:Depends}, python-pexpect (>=2.1), python-gtk2, python-support (>= 0.90), x11vnc 
+Description: Linux-tuki.fi:n etäyhteys
+ Tämän ohjelman avulla Linux-tuen asiakkaan
+ on helppo avata etäyhteys tukihenkilöa varten.

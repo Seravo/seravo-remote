@@ -1,0 +1,2 @@
+?package(linux-tuki-etayhteys):needs="X11" section="Applications/Network/Communication"\
+  title="Etäyhteys Linux-tuki.fi:n asiakkaille" command="/usr/bin/linux-tuki-etayhteys"
