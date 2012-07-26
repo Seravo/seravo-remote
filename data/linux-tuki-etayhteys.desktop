@@ -1,11 +1,18 @@
-[Desktop Entry] 
-Encoding=UTF-8
-Name=Linux-tuki.fi - Avaa etäyhteys
+[Desktop Entry]
 Version=1.0
-Comment=Etäyhteys Linux-tuki.fi:n asiakkaille
-GenericName=linux-tuki-etayhteys
+Name=Seravo Remote Support
+Name[fi]=Seravo etäyhteys
+Comment=Enable remote access for support person
+Comment[fi]=Avaa etäyhteys tukihenkilölle
+GenericName=Remote support
+GenericName[fi]=Etäyhteys
+Keywords=Remote;Connection;Desktop;Sharing;VNC;Linux-tuki;Seravo
+Keywords[fi]=Etäyhteys;Etätuki;Yhteys;Työpöydän jako;VNC;Linux-tuki;Seravo
 Terminal=false
 Icon=/usr/share/pixmaps/lti.png
 Type=Application
-Exec=/usr/bin/linux-tuki-etayhteys
-Categories=Network
+Exec=/usr/share/linux-tuki-etayhteys/linux-tuki-etayhteys.py
+Categories=Gnome;GTK;Network;
+X-MultipleArgs=false
+StartupNotify=true
+
