@@ -7,6 +7,8 @@
 #
 # See also:
 # http://ghantoos.org/2008/10/19/creating-a-deb-package-from-a-python-setuppy/
+# https://wiki.ubuntu.com/PackagingGuide/Python
+# http://guide.python-distribute.org/creation.html
 #
 # Rember to update the version number in these commands!
 
@@ -29,7 +31,15 @@ cd linux-tuki-etayhteys-$VERSION/
 # only on first time
 dh_make -c gpl -i -f ../linux-tuki-etayhteys-$VERSION.tar.gz 
 
+# copy Debian files to packaging tempalte
+cp ../../Debian/* Debian/*
+
 # edit changelog
 dch -e 
 
+# Build!
 debuild
+
+# Clean up before next build
+debclean
+
