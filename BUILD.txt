@@ -1,17 +1,33 @@
+# The source of the program recides in this repo as is.
+# Using these commands you can generate a plain source tar.gz
+# and from it the actual deb package.
+#
+# This way you'll have under folder dist/ all the files needed
+# when uploading and distributing a program.
+#
+# See also:
+# http://ghantoos.org/2008/10/19/creating-a-deb-package-from-a-python-setuppy/
+#
+# Rember to update the version number in these commands!
+
 cd linux-tuki-etayhteys/
+
+# after updating the program itself, update the changelog with
+debchange --package linux-tuki-etayhteys -v 2.1.1
 
 # packages current source as a tar.gz with version name
 # only file added to current directory is MANIFEST
 python setup.py sdist
 
 export DEBFULLNAME="Otto Kekäläinen"
-export DEBEMAIL="otto.kekalainen@linux-tuki.fi"
+export DEBEMAIL="otto.kekalainen@seravo.fi"
+export VERSION=2.1.1
 
 cd dist
-tar -xf linux-tuki-etayhteys-2.1.tar.gz 
-cd linux-tuki-etayhteys-2.1/
+tar -xf linux-tuki-etayhteys-$VERSION.tar.gz 
+cd linux-tuki-etayhteys-$VERSION/
 # only on first time
-dh_make -c gpl -i -f ../linux-tuki-etayhteys-2.1.tar.gz 
+dh_make -c gpl -i -f ../linux-tuki-etayhteys-$VERSION.tar.gz 
 
 # edit changelog
 dch -e 

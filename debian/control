@@ -1,10 +1,10 @@
 Source: linux-tuki-etayhteys
 Section: x11
 Priority: optional
-Maintainer: Otto Kekäläinen <otto.kekalainen@linux-tuki.fi>
+Maintainer: Otto Kekäläinen <otto.kekalainen@seravo.fi>
 Build-Depends: debhelper (>= 7.0.50~), python (>= 2.5), python-support, python-gtk2 (>= 2.10),
-Standards-Version: 3.9.1
-Homepage: http://linux-tuki.fi/
+Standards-Version: 3.9.3
+Homepage: http://seravo.fi/
 Vcs-Bzr: https://code.launchpad.net/~otto/+junk/linux-tuki-etayhteys
 Vcs-Browser: http://bazaar.launchpad.net/~otto/+junk/linux-tuki-etayhteys/files
 XS-Python-Version: >= 2.5

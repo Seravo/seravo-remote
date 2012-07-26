@@ -6,7 +6,7 @@ from subprocess import *
 import os
 
 dist = setup(name='linux-tuki-etayhteys',
-	version='2.1',
+	version='2.1.1',
 	author='Suomen Linux-tuki (Seravo Oy)',
 	author_email='linux-tuki@seravo.fi',
 	maintainer='Suomen Linux-tuki (Seravo Oy)',
