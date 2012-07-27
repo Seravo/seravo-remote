@@ -9,13 +9,17 @@ Version: %{version}
 Release: %{release}
 Source0: %{name}-%{unmangled_version}.tar.gz
 License: GNU GPL
-Group: Development/Libraries
+Group: Productivity/Networking/Other
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Prefix: %{_prefix}
 BuildArch: noarch
 Vendor: Otto Kekäläinen (Seravo Oy) <linux-tuki@seravo.fi>
 Url: http://linux-tuki.fi/
-
+BuildRequires: python-devel
+BuildRequires: python-distribute
+BuildRequires: update-desktop-files
+Requires: python(abi) = 2.7
+ 
 %description
 Tämän ohjelman avulla Linux-tuen asiakkaan on helppo avata etäyhteys tukihenkilöä varten.
 
@@ -26,10 +30,14 @@ Tämän ohjelman avulla Linux-tuen asiakkaan on helppo avata etäyhteys tukihenk
 python setup.py build
 
 %install
-python setup.py install -O1 --root=$RPM_BUILD_ROOT --record=INSTALLED_FILES
+python setup.py install --prefix=%{_prefix} --root=%{buildroot}
+#%%suse_update_desktop_file -n %%{name} Network
 
-%clean
-rm -rf $RPM_BUILD_ROOT
+%files
+%defattr(-,root,root,-)
+/usr/bin/linux-tuki-etayhteys
+/usr/lib/python2.7/site-packages/linux_tuki_etayhteys-2.1.1-py2.7.egg-info
+/usr/share/applications/linux-tuki-etayhteys.desktop
+/usr/share/man/man1/linux-tuki-etayhteys.1.gz
+/usr/share/pixmaps/lti.png
 
-%files -f INSTALLED_FILES
-%defattr(-,root,root)

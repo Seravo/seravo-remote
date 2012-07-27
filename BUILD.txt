@@ -9,6 +9,7 @@
 # http://ghantoos.org/2008/10/19/creating-a-deb-package-from-a-python-setuppy/
 # https://wiki.ubuntu.com/PackagingGuide/Python
 # http://guide.python-distribute.org/creation.html
+# http://docs.python.org/distutils/builtdist.html#creating-rpm-packages
 #
 # Rember to update the version number in these commands!
 

@@ -9,10 +9,10 @@ GenericName[fi]=Etäyhteys
 Keywords=Remote;Connection;Desktop;Sharing;VNC;Linux-tuki;Seravo
 Keywords[fi]=Etäyhteys;Etätuki;Yhteys;Työpöydän jako;VNC;Linux-tuki;Seravo
 Terminal=false
-Icon=/usr/share/pixmaps/lti.png
+Icon=lti
 Type=Application
-Exec=/usr/share/linux-tuki-etayhteys/linux-tuki-etayhteys.py
-Categories=Gnome;GTK;Network;
+Exec=linux-tuki-etayhteys
+Categories=Network;RemoteAccess;
 X-MultipleArgs=false
 StartupNotify=true
 
