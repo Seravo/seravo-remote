@@ -33,7 +33,7 @@ cd linux-tuki-etayhteys-$VERSION/
 dh_make -c gpl -i -f ../linux-tuki-etayhteys-$VERSION.tar.gz 
 
 # copy Debian files to packaging tempalte
-cp ../../Debian/* Debian/*
+cp ../../debian/* debian/
 
 # edit changelog
 dch -e 
