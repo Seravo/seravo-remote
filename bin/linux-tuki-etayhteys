@@ -83,11 +83,12 @@ class Etayhteys:
     self.hbox_button = gtk.HBox(homogeneous=False)
     
     image = gtk.Image()
-    image.set_from_file('../data/lti.png')
+    # assumes /usr always installdir
+    image.set_from_file('/usr/share/pixmaps/lti.png')
     self.hbox_image.add(image)
 
     self.msg = gtk.Label()
-    self.msg.set_markup("Tervetuloa käyttämään Linux-tuki.fi:n etäyhteysohjelmaa,\n jonka avulla tukihenkilö voi antaa etätukea.")
+    self.msg.set_markup("Tervetuloa käyttämään Linux-tuki.fi:n etäyhteysohjelmaa,\n jonka avulla tukihenkilö voi antaa etätukea.\n\nLisätietoja sivulla <a href='http://linux-tuki.fi/etayhteys'>linux-tuki.fi/etayhteys</a>")
     self.hbox_message.add(self.msg)
 
     avaa_btn = gtk.Button("_Avaa etäyhteys")
