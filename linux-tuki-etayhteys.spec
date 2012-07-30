@@ -1,4 +1,5 @@
 %define name linux-tuki-etayhteys
+%define name_path linux_tuki_etayhteys
 %define version 2.3
 %define unmangled_version 2.3
 %define release 1
@@ -77,19 +78,16 @@ python setup.py install --prefix=%{_prefix} --root=%{buildroot}
 /usr/share/pixmaps/lti.png
 
 %if 0%{?suse_version} && 0%{?suse_version} <= 1110
-# /usr/lib/python2.6/site-packages/linux_tuki_etayhteys-2.1.1-py2.6.egg-info
-#  error: Installed (but unpackaged) file(s) found:
-#  /usr/lib64/python2.6/site-packages/linux_tuki_etayhteys-2.1.1-py2.6.egg-info
-%python_sitearch/%{name}-%{unmangled_version}-py%{py_ver}.egg-info
-# "/usr/lib64/python2.6/site-packages/linux_tuki_etayhteys-2.1.1-py2.6.egg-info" is not allowed in a noarch package.
+# noarch is available only in never SUSE versions
+# old must have path /usr/lib64/python2.6...
+%python_sitearch/%{name_path}-%{unmangled_version}-py%{py_ver}.egg-info
 %else
-
-%if 0%{?rhel_version} == 600 || 0%{?centos_version} == 600
-%python_sitelib/%{name}-%{unmangled_version}-py2.6.egg-info
-%else
-%python_sitelib/%{name}-%{unmangled_version}-py2.7.egg-info
-%endif
-
-# %py_ver does not get translated in Fedora
-# %python_sitelib/linux_tuki_etayhteys-2.1.1-py%{py_ver}.egg-info
+    %if 0%{?rhel_version} == 600 || 0%{?centos_version} == 600
+    # use python 2.6 path in older RHEL
+    # referring with %%py_ver does not work on RHEL
+    %python_sitelib/%{name_path}-%{unmangled_version}-py2.6.egg-info
+    %else
+    # this path for both newer SUSEs and Red Hats
+    %python_sitelib/%{name_path}-%{unmangled_version}-py2.7.egg-info
+    %endif
 %endif

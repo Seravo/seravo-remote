@@ -1,3 +1,5 @@
+python setup.py sdist
+
 cp linux-tuki-etayhteys.spec linux-tuki-etayhteys.dsc ../osc/home\:ottokek/seravo-remote/
 cp debian/control ../osc/home\:ottokek/seravo-remote/debian.control
 cp debian/changelog ../osc/home\:ottokek/seravo-remote/debian.changelog
@@ -9,6 +11,9 @@ cp dist/linux-tuki-etayhteys-2.3.tar.gz ../osc/home\:ottokek/seravo-remote/linux
 cd ../osc/home\:ottokek/seravo-remote/
 osc rm linux-tuki-etayhteys_2.2.tar.gz
 osc add linux-tuki-etayhteys_2.3.tar.gz
+
+# OBS changelog message
+osc vc
 
 osc commit -m "Updated to version 2.3"
 
