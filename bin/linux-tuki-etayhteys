@@ -4,6 +4,7 @@
 # Linux-tuki.fi etäyhteys
 # Copyright (C) 2008 Osma Suominen / Osuuskunta Sange <osma.suominen@sange.fi>
 # Copyright (C) 2010 Otto Kekäläinen / Osuuskunta Sange <otto.kekalainen@sange.fi>
+# Copyright (C) 2011-12 Otto Kekäläinen / Seravo Oy <otto.kekalainen@seravo.fi>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -36,6 +37,7 @@ SSHSERVER = "linux-tuki.fi"
 SSHUSER = "etayhteys"
 SSHOPTS = ":localhost:5900"
 SSHPORT = random.randint(5900,5999)
+SSHPASSWD = "jyrki123"
 
 X11VNC = "/usr/bin/x11vnc"
 KILLX11VNC = "/usr/bin/killall"
@@ -69,41 +71,43 @@ class Etayhteys:
   def __init__(self):
     self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
     self.window.set_title("Linux-tuki.fi:n etäyhteys")
+    self.window.set_position(gtk.WIN_POS_CENTER)
     
     # huolehdi että ohjelma voidaan sulkea siististi
     self.window.connect("destroy", self.sulje)
     
     # set up user interface
-    vbox = gtk.VBox()
-    self.hbox_entries = gtk.HBox(homogeneous=False, spacing=12)
-    self.hbox_message = gtk.HBox(homogeneous=False, spacing=12)
+    vbox = gtk.VBox(spacing=12)
+    self.hbox_image = gtk.HBox()
+    self.hbox_message = gtk.HBox(spacing=12)
+    self.hbox_button = gtk.HBox(homogeneous=False)
     
-    self.salasana_entry = gtk.Entry()
-    self.salasana_entry.set_visibility(False)
-    self.salasana_entry.connect("activate", self.avaa, None)
-    self.hbox_entries.pack_start(self.salasana_entry, expand=False)
-    
+    image = gtk.Image()
+    image.set_from_file('../data/lti.png')
+    self.hbox_image.add(image)
+
+    self.msg = gtk.Label()
+    self.msg.set_markup("Tervetuloa käyttämään Linux-tuki.fi:n etäyhteysohjelmaa,\n jonka avulla tukihenkilö voi antaa etätukea.")
+    self.hbox_message.add(self.msg)
+
     avaa_btn = gtk.Button("_Avaa etäyhteys")
     avaa_btn.connect("clicked", self.avaa, None)
-    self.hbox_entries.pack_start(avaa_btn, expand=False)    
-
-    self.viesti = gtk.Label()
-    self.viesti.set_markup("Anna tukihenkilön kertoma salasana:")
-    self.hbox_message.pack_start(self.viesti, expand=False)
+    self.hbox_button.pack_start(avaa_btn, expand=True)    
     
+    vbox.pack_start(self.hbox_image, expand=False)
     vbox.pack_start(self.hbox_message, expand=False)
-    vbox.pack_start(self.hbox_entries, expand=False)
+    vbox.pack_start(self.hbox_button, expand=False)
     
     self.window.add(vbox)
-    self.window.set_border_width(48)
+    self.window.set_border_width(24)
 
     self.window.show_all()
     
   def avaa(self, widget, data=None):
     
     print "Avataan SSH-yhteys..."
-    self.hbox_entries.hide()
-    self.viesti.set_markup("Avataan etäyhteyttä...")
+    self.hbox_button.hide()
+    self.msg.set_markup("Avataan etäyhteyttä...")
     
     # huolehditaan siitä että GUI ehtii piirtyä
     while gtk.events_pending():
@@ -114,8 +118,9 @@ class Etayhteys:
     
     try:
       self.ssh = pxsshFalselogin()
-      password = self.salasana_entry.get_text()
-      success = self.ssh.login("-R %s%s %s" % (SSHPORT, SSHOPTS, SSHSERVER), SSHUSER, password)
+      # wait a little bit so that initialization is done
+      time.sleep(3)
+      success = self.ssh.login("-R %s%s %s" % (SSHPORT, SSHOPTS, SSHSERVER), SSHUSER, SSHPASSWD)
     except Exception, e:
       error = str(e)
       print error
@@ -124,9 +129,8 @@ class Etayhteys:
     if (error != "Timeout exceeded in read_nonblocking()."):
       self.ssh = None
       # näytä virheilmo
-      self.viesti.set_markup("Etäyhteyden avaus epäonnistui.\nSyötä salasana uudestaan:")
-      self.hbox_entries.show()
-      self.salasana_entry.grab_focus()
+      self.msg.set_markup("Etäyhteyden avaus epäonnistui.")
+      self.hbox_button.show()
       return
     
     # käynnistä vino
@@ -148,7 +152,7 @@ class Etayhteys:
       self.sammuta_ssh()
       
       # näytä virheilmo
-      self.viesti.set_markup("Virhe etätyöpöydän käyttöönotossa: X11VNC-palvelimen käynnistys epäonnistui.")
+      self.msg.set_markup("Virhe etätyöpöydän käyttöönotossa: X11VNC-palvelimen käynnistys epäonnistui.")
       return
       
     # odota X11VNC:n käynnistymistä
@@ -166,14 +170,14 @@ class Etayhteys:
     
     if not success:
       self.sammuta_ssh()
-      self.viesti.set_markup("Virhe etätyöpöydän käyttöönotossa: X11VNC ei käynnisty.")
+      self.msg.set_markup("Virhe etätyöpöydän käyttöönotossa: X11VNC ei käynnisty.")
       return
           
     
     # onnistui, aseta kälin tila sen mukaisesti    
     print "Etäyhteys on auki, portti: %s" % SSHPORT
     
-    self.viesti.set_markup("Etäyhteys on auki portissa %s.\nNäet ruudullasi kaiken mitä tukihenkilö tekee.\nVoit sulkea etäyhteysohjelman koska tahansa." % SSHPORT)
+    self.msg.set_markup("Etäyhteys on auki portissa %s.\nNäet ruudullasi kaiken mitä tukihenkilö tekee.\nVoit sulkea etäyhteysohjelman koska tahansa." % SSHPORT)
     
   def sammuta_x11vnc(self):
     try:
@@ -191,7 +195,7 @@ class Etayhteys:
   
   def sulje(self, widget, data=None):
     print("Suljetaan ohjelmaa...")
-    self.viesti.set_markup("Katkaistaan etäyhteyttä") # ei toimi, miksi?
+    self.msg.set_markup("Katkaistaan etäyhteyttä") # ei toimi, miksi?
     time.sleep(2)
   
     # sammuta vino, ellei se ollut jo valmiiksi päällä
