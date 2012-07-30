@@ -1,13 +1,13 @@
 [Desktop Entry]
 Version=1.0
-Name=Seravo Remote Support
-Name[fi]=Seravo etäyhteys
+Name=Linux-tuki.fi Remove Support
+Name[fi]=Linux-tuki.fi:n etäyhteys
 Comment=Enable remote access for support person
 Comment[fi]=Avaa etäyhteys tukihenkilölle
 GenericName=Remote support
 GenericName[fi]=Etäyhteys
 Keywords=Remote;Connection;Desktop;Sharing;VNC;Linux-tuki;Seravo
-Keywords[fi]=Etäyhteys;Etätuki;Yhteys;Työpöydän jako;VNC;Linux-tuki;Seravo
+Keywords[fi]=Etäyhteys;Etätuki;Yhteys;Työpöydän jako;VNC;Linux-tuki;Seravo;
 Terminal=false
 Icon=lti
 Type=Application
