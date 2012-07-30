@@ -14,7 +14,7 @@
 # Rember to update the version number in these commands!
 
 # after updating the program itself, update the changelog with
-debchange --package linux-tuki-etayhteys -v 2.2
+debchange --package linux-tuki-etayhteys -v 2.3
 
 # packages current source as a tar.gz with version name
 # only file added to current directory is MANIFEST
@@ -22,7 +22,7 @@ python setup.py sdist
 
 export DEBFULLNAME="Otto Kekäläinen"
 export DEBEMAIL="otto.kekalainen@seravo.fi"
-export VERSION=2.2
+export VERSION=2.3
 
 cd dist
 tar -xf linux-tuki-etayhteys-$VERSION.tar.gz 
@@ -32,9 +32,6 @@ dh_make -c gpl -i -f ../linux-tuki-etayhteys-$VERSION.tar.gz
 
 # copy Debian files to packaging tempalte
 cp ../../debian/* debian/
-
-# edit changelog
-dch -e 
 
 # Build!
 debuild

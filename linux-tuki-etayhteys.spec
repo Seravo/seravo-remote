@@ -1,6 +1,6 @@
 %define name linux-tuki-etayhteys
-%define version 2.2
-%define unmangled_version 2.2
+%define version 2.3
+%define unmangled_version 2.3
 %define release 1
 
 Summary: Etäyhteysohjelma Linux-tuki.fi:n asiakkaille

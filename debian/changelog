@@ -1,3 +1,9 @@
+linux-tuki-etayhteys (2.3) precise; urgency=low
+
+  * Bumped up one version number to distinquish from old RPM versions
+
+ -- Otto Kekäläinen <otto.kekalainen@seravo.fi>  Mon, 30 Jul 2012 14:54:32 +0300
+
 linux-tuki-etayhteys (2.2) precise; urgency=low
 
   * Packaged version 2.2
