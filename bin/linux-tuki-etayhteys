@@ -25,6 +25,9 @@ import time
 import subprocess
 import sys
 import random
+import urllib, urllib2
+import socket
+import platform
 
 try:
   import pxssh
@@ -49,6 +52,13 @@ HELPTEXT = "Muodostaa etäyhteyden, jonka " + \
            "kautta Linux-tuki.fi:n tukihenkilö pääsee käsiksi \n" + \
            "tietokoneeseesi ja auttaa sinua ongelman ratkaisemisessa."
 
+LOG_URL = "http://seravo.fi/seravo-remote-log"
+
+LOG_HOSTNAME = socket.gethostname()
+LOG_OS_VER = platform.linux_distribution()[0] + " " + \
+    platform.linux_distribution()[1] + " " + \
+    platform.machine()
+
 class pxsshFalselogin (pxssh.pxssh):
   """a version of pxssh that works with a falselogin shell"""
   
@@ -69,6 +79,8 @@ class Etayhteys:
   local_only_state = 'false'
   
   def __init__(self):
+    log("Program started")
+    
     self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
     self.window.set_title("Linux-tuki.fi:n etäyhteys")
     self.window.set_position(gtk.WIN_POS_CENTER)
@@ -106,7 +118,7 @@ class Etayhteys:
     
   def avaa(self, widget, data=None):
     
-    print "Avataan SSH-yhteys..."
+    log("Opening SSH connection")
     self.hbox_button.hide()
     self.msg.set_markup("Avataan etäyhteyttä...")
     
@@ -124,7 +136,7 @@ class Etayhteys:
       success = self.ssh.login("-R %s%s %s" % (SSHPORT, SSHOPTS, SSHSERVER), SSHUSER, SSHPASSWD)
     except Exception, e:
       error = str(e)
-      print error
+      log(error)
     
     # normaalisti tulee aina aikavirhe, sillä -N -optiolle SSH ei anna mitään shelliä
     if (error != "Timeout exceeded in read_nonblocking()."):
@@ -136,7 +148,7 @@ class Etayhteys:
     
     # käynnistä vino
     
-    print "Otetaan käyttöön etätyöpöytä..."
+    log("Otetaan käyttöön etätyöpöytä...")
     
     # huolehditaan siitä että GUI ehtii piirtyä
     while gtk.events_pending():
@@ -176,7 +188,7 @@ class Etayhteys:
           
     
     # onnistui, aseta kälin tila sen mukaisesti    
-    print "Etäyhteys on auki, portti: %s" % SSHPORT
+    log("Connection open at port %s" % SSHPORT)
     
     self.msg.set_markup("Etäyhteys on auki portissa %s.\nNäet ruudullasi kaiken mitä tukihenkilö tekee.\nVoit sulkea etäyhteysohjelman koska tahansa." % SSHPORT)
     
@@ -195,26 +207,29 @@ class Etayhteys:
   
   
   def sulje(self, widget, data=None):
-    print("Suljetaan ohjelmaa...")
+    log("Closing program")
     self.msg.set_markup("Katkaistaan etäyhteyttä") # ei toimi, miksi?
     time.sleep(2)
   
     # sammuta vino, ellei se ollut jo valmiiksi päällä
     if self.remote_access_state == 'false':
-      print "Otetaan etätyöpöytä pois käytöstä..."
+      log("Closing X11VNC")
       self.sammuta_x11vnc()
     
     # sammuta SSH
-    print "Katkaistaan SSH-yhteys..."
+    log("Closing SSH connection")
     self.sammuta_ssh()
     
     gtk.main_quit()
     return True
   
-  
   def main(self):
     gtk.main()
 
+def log(msg):
+  get = urllib.urlencode({"host": LOG_HOSTNAME, "msg": msg, "os-ver": LOG_OS_VER})
+  response = urllib2.urlopen(urllib2.Request(LOG_URL + "?" + get))
+  print msg
 
 if __name__ == '__main__':
   eta = Etayhteys()
