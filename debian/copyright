@@ -3,12 +3,13 @@ Upstream-Name: linux-tuki-etayhteys
 Source: http://linux-tuki.fi/
 
 Files: *
-Copyright: 2009-2011 Otto Kekäläinen <otto.kekalainen@linux-tuki.fi>
+Copyright: 2011-2012 Otto Kekäläinen <otto.kekalainen@seravo.fi.fi>
+           2009-2010 Otto Kekäläinen <otto.kekalainen@linux-tuki.fi>
            2009 Osma Suominen
 License: GPL-3.0+
 
 Files: debian/*
-Copyright: 2011 Otto Kekäläinen <otto.kekalainen@linux-tuki.fi>
+Copyright: 2011-2012 Otto Kekäläinen <otto.kekalainen@seravo.fi.fi>
 License: GPL-3.0+
 
 License: GPL-3.0+

@@ -1,6 +1,6 @@
 %define name linux-tuki-etayhteys
-%define version 2.1.1
-%define unmangled_version 2.1.1
+%define version 2.2
+%define unmangled_version 2.2
 %define release 1
 
 Summary: Etäyhteysohjelma Linux-tuki.fi:n asiakkaille
@@ -23,7 +23,6 @@ BuildArch: noarch
 Vendor: Otto Kekäläinen (Seravo Oy) <linux-tuki@seravo.fi>
 Url: http://linux-tuki.fi/
 BuildRequires: python-devel
-Requires: python(abi) >= 2.6
 Requires: python-gtk 
 Requires: x11vnc
 
@@ -72,23 +71,23 @@ python setup.py install --prefix=%{_prefix} --root=%{buildroot}
 
 %files
 %defattr(-,root,root)
-/usr/bin/linux-tuki-etayhteys
-/usr/share/applications/linux-tuki-etayhteys.desktop
-/usr/share/man/man1/linux-tuki-etayhteys.1.gz
+/usr/bin/%{name}
+/usr/share/applications/%{name}.desktop
+/usr/share/man/man1/%{name}.1.gz
 /usr/share/pixmaps/lti.png
 
 %if 0%{?suse_version} && 0%{?suse_version} <= 1110
 # /usr/lib/python2.6/site-packages/linux_tuki_etayhteys-2.1.1-py2.6.egg-info
 #  error: Installed (but unpackaged) file(s) found:
 #  /usr/lib64/python2.6/site-packages/linux_tuki_etayhteys-2.1.1-py2.6.egg-info
-%python_sitearch/linux_tuki_etayhteys-2.1.1-py%{py_ver}.egg-info
+%python_sitearch/%{name}-%{unmangled_version}-py%{py_ver}.egg-info
 # "/usr/lib64/python2.6/site-packages/linux_tuki_etayhteys-2.1.1-py2.6.egg-info" is not allowed in a noarch package.
 %else
 
 %if 0%{?rhel_version} == 600 || 0%{?centos_version} == 600
-%python_sitelib/linux_tuki_etayhteys-2.1.1-py2.6.egg-info
+%python_sitelib/%{name}-%{unmangled_version}-py2.6.egg-info
 %else
-%python_sitelib/linux_tuki_etayhteys-2.1.1-py2.7.egg-info
+%python_sitelib/%{name}-%{unmangled_version}-py2.7.egg-info
 %endif
 
 # %py_ver does not get translated in Fedora
