@@ -13,6 +13,10 @@
 #
 # Rember to update the version number in these commands!
 
+# cleanup
+rm -rf dist/*
+
+
 # after updating the program itself, update the changelog with
 debchange --package linux-tuki-etayhteys -v 2.3
 
