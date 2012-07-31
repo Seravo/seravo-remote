@@ -28,6 +28,7 @@ import random
 import urllib, urllib2
 import socket
 import platform
+import os.path
 
 try:
   import pxssh
@@ -44,8 +45,27 @@ SSHPASSWD = "jyrki123"
 
 X11VNC = "/usr/bin/x11vnc"
 KILLX11VNC = "/usr/bin/killall"
-
 PIDOF = "/bin/pidof"
+
+# e.g. RHEL has different path
+if (os.path.exists(PIDOF) == False):
+  PIDOF = "/sbin/pidof"
+
+
+## RHEL/CentOS:
+# PIDOF = "/sbin/pidof"
+# install x11vnc from RPMForge or package in OBS
+# as embedded binary, since it does not need more dependencies
+#
+# if using TigerVNC, which is available from default repos:
+# - X11VNC = "/usr/bin/vncserver"
+# - pidof Xvnc, not x11vnc
+# - set dummy password on first opening, 
+#   log the password to server for support person to see
+# -  no options to vncserver
+# -  SSHOPTS = ":localhost:5901"
+# ..and yet still does not work?
+
 X11VNCTIMEOUT = 30
 
 HELPTEXT = "Muodostaa etäyhteyden, jonka " + \

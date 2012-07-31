@@ -9,7 +9,13 @@ Name: %{name}
 Version: %{version}
 Release: %{release}
 Source0: %{name}_%{unmangled_version}.tar.gz
+
+%if 0%{?suse_version} > 1210
+License: GPL-3.0+
+%else
 License: GNU GPL
+%endif
+
 Group: Productivity/Networking/Other
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Prefix: %{_prefix}
@@ -23,9 +29,6 @@ BuildArch: noarch
 
 Vendor: Otto Kekäläinen (Seravo Oy) <linux-tuki@seravo.fi>
 Url: http://linux-tuki.fi/
-BuildRequires: python-devel
-Requires: python-gtk 
-Requires: x11vnc
 
 # per distro availability checked with http://pkgs.org/
 # http://lists.opensuse.org/opensuse-buildservice/2012-07/msg00097.html see this thread
@@ -35,11 +38,8 @@ Requires: x11vnc
 # use "osc linkpac project packge your_project" to link it into your home project, then "osc meta pkg x11vnc -e" then 
 # "<build><disable repository="openSUSE_12.1" /></build>" to disable its build
 
-
-%if 0%{?suse_version}
-BuildRequires: update-desktop-files
-Requires: python-pexpect
-%endif
+BuildRequires: python-devel
+Requires: x11vnc
 
 %if 0%{?suse_version} > 1200
 BuildRequires: python-distribute
@@ -53,8 +53,14 @@ BuildRequires: python-setuptools
 BuildRequires: python-distribute
 BuildRequires: desktop-file-utils
 Requires: pexpect
+Requires: pygtk2
+%else
+BuildRequires: update-desktop-files
+Requires: python-pexpect
+Requires: python-gtk 
+Requires: x11vnc
 %endif
- 
+
 %description
 Tämän ohjelman avulla Linux-tuen asiakkaan on helppo avata etäyhteys tukihenkilöä varten.
 
