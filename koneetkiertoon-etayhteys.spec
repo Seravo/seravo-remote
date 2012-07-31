@@ -1,10 +1,10 @@
-%define name linux-tuki-etayhteys
-%define name_path linux_tuki_etayhteys
+%define name koneetkiertoon-etayhteys
+%define name_path koneetkiertoon_etayhteys
 %define version 2.3
 %define unmangled_version 2.3
 %define release 1
 
-Summary: Etäyhteysohjelma Linux-tuki.fi:n asiakkaille
+Summary: Etäyhteysohjelma koneetkiertoon.fi:n asiakkaille
 Name: %{name}
 Version: %{version}
 Release: %{release}
@@ -28,7 +28,7 @@ BuildArch: noarch
 %endif
 
 Vendor: Otto Kekäläinen (Seravo Oy) <linux-tuki@seravo.fi>
-Url: http://linux-tuki.fi/
+Url: http://koneetkiertoon.fi/
 
 # per distro availability checked with http://pkgs.org/
 # http://lists.opensuse.org/opensuse-buildservice/2012-07/msg00097.html see this thread
@@ -62,7 +62,7 @@ Requires: x11vnc
 %endif
 
 %description
-Tämän ohjelman avulla Linux-tuen asiakkaan on helppo avata etäyhteys tukihenkilöä varten.
+Tämän ohjelman avulla Koneet kiertoon asiakkaan on helppo avata etäyhteys tukihenkilöä varten.
 
 %prep
 %setup -n %{name}-%{unmangled_version}
@@ -81,7 +81,7 @@ python setup.py install --prefix=%{_prefix} --root=%{buildroot}
 /usr/bin/%{name}
 /usr/share/applications/%{name}.desktop
 /usr/share/man/man1/%{name}.1.gz
-/usr/share/pixmaps/lti.png
+/usr/share/pixmaps/koneetkiertoon-x32.png
 
 %if 0%{?suse_version} && 0%{?suse_version} <= 1110
 # noarch is available only in never SUSE versions

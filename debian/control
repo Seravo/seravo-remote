@@ -1,17 +1,17 @@
-Source: linux-tuki-etayhteys
+Source: koneetkiertoon-etayhteys
 Section: x11
 Priority: optional
 Maintainer: Otto Kekäläinen <otto.kekalainen@seravo.fi>
 Build-Depends: debhelper (>= 7.0.50~), python (>= 2.5), python-support, python-gtk2 (>= 2.10),
 Standards-Version: 3.9.3
-Homepage: http://seravo.fi/
+Homepage: http://koneetkiertoon.fi/
 Vcs-Bzr: https://code.launchpad.net/~otto/+junk/linux-tuki-etayhteys
 Vcs-Browser: http://bazaar.launchpad.net/~otto/+junk/linux-tuki-etayhteys/files
 XS-Python-Version: >= 2.5
 
-Package: linux-tuki-etayhteys
+Package: koneetkiertoon-etayhteys
 Architecture: all
 Depends: ${misc:Depends}, ${python:Depends}, python-pexpect (>=2.1), python-gtk2, x11vnc 
-Description: Linux-tuki.fi:n etäyhteys
- Tämän ohjelman avulla Linux-tuen asiakkaan
+Description: koneetkiertoon:n etäyhteys
+ Tämän ohjelman avulla Koneet kiertoon asiakkaan
  on helppo avata etäyhteys tukihenkilöa varten.

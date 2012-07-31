@@ -1,17 +1,18 @@
+
 [Desktop Entry]
 Version=1.0
-Name=Linux-tuki.fi Remote Support
-Name[fi]=Linux-tuki.fi:n etäyhteys
+Name=Koneetkiertoon.fi Remote Support
+Name[fi]=koneetkiertoon-etayhteys.desktop
 Comment=Enable remote access for support person
 Comment[fi]=Avaa etäyhteys tukihenkilölle
 GenericName=Remote support
 GenericName[fi]=Etäyhteys
-Keywords=Remote;Connection;Desktop;Sharing;VNC;Linux-tuki;Seravo;
-Keywords[fi]=Etäyhteys;Etätuki;Yhteys;Työpöydän jako;VNC;Linux-tuki;Seravo;
+Keywords=Remote;Connection;Desktop;Sharing;VNC;Linux-tuki;Seravo;Koneetkiertoon;
+Keywords[fi]=Etäyhteys;Etätuki;Yhteys;Työpöydän jako;VNC;Linux-tuki;Seravo;Koneetkiertoon;
 Terminal=false
 Icon=lti
 Type=Application
-Exec=linux-tuki-etayhteys
+Exec=Koneetkiertoon-etayhteys
 Categories=Network;RemoteAccess;
 X-MultipleArgs=false
 StartupNotify=true

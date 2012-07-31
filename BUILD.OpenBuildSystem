@@ -1,16 +1,16 @@
 python setup.py sdist
 
-cp linux-tuki-etayhteys.spec linux-tuki-etayhteys.dsc ../osc/home\:ottokek/seravo-remote/
-cp debian/control ../osc/home\:ottokek/seravo-remote/debian.control
-cp debian/changelog ../osc/home\:ottokek/seravo-remote/debian.changelog
-cp debian/copyright ../osc/home\:ottokek/seravo-remote/debian.copyright
-cp debian/menu ../osc/home\:ottokek/seravo-remote/debian.menu
-cp debian/rules ../osc/home\:ottokek/seravo-remote/debian.rules
-cp dist/linux-tuki-etayhteys-2.3.tar.gz ../osc/home\:ottokek/seravo-remote/linux-tuki-etayhteys_2.3.tar.gz
+cp koneetkiertoon-etayhteys.spec koneetkiertoon-etayhteys.dsc ../osc/home\:ottokek/koneetkiertoon/
+cp debian/control ../osc/home\:ottokek/koneetkiertoon/debian.control
+cp debian/changelog ../osc/home\:ottokek/koneetkiertoon/debian.changelog
+cp debian/copyright ../osc/home\:ottokek/koneetkiertoon/debian.copyright
+cp debian/menu ../osc/home\:ottokek/koneetkiertoon/debian.menu
+cp debian/rules ../osc/home\:ottokek/koneetkiertoon/debian.rules
+cp dist/koneetkiertoon-etayhteys-2.3.tar.gz ../osc/home\:ottokek/koneetkiertoon/koneetkiertoon-etayhteys_2.3.tar.gz
 
-cd ../osc/home\:ottokek/seravo-remote/
-osc rm linux-tuki-etayhteys_2.2.tar.gz
-osc add linux-tuki-etayhteys_2.3.tar.gz
+cd ../osc/home\:ottokek/koneetkiertoon/
+osc rm koneetkiertoon-etayhteys_2.2.tar.gz
+osc add koneetkiertoon-etayhteys_2.3.tar.gz
 
 # OBS changelog message
 osc vc

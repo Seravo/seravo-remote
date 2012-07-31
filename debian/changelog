@@ -1,23 +1,6 @@
-linux-tuki-etayhteys (2.3) precise; urgency=low
+koneetkiertoon-etayhteys (2.3) precise; urgency=low
 
   * Bumped up one version number to distinquish from old RPM versions
 
  -- Otto Kekäläinen <otto.kekalainen@seravo.fi>  Mon, 30 Jul 2012 14:54:32 +0300
 
-linux-tuki-etayhteys (2.2) precise; urgency=low
-
-  * Packaged version 2.2
-
- -- Otto Kekäläinen <otto.kekalainen@seravo.fi>  Mon, 30 Jul 2012 13:53:04 +0300
- 
-linux-tuki-etayhteys (2.1.1) precise; urgency=low
-
-  * Updated desktop entry to include Unity specific stuff
-
- -- Otto Kekäläinen <otto.kekalainen@seravo.fi>  Thu, 26 Jul 2012 13:53:04 +0300
-
-linux-tuki-etayhteys (2.1-1) unstable; urgency=low
-
-  * Initial release
-
- -- Otto Kekäläinen <otto.kekalainen@linux-tuki.fi>  Tue, 13 Sep 2011 01:01:07 +0300

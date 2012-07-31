@@ -22,23 +22,23 @@ from distutils.core import setup
 from subprocess import *
 import os
 
-dist = setup(name='linux-tuki-etayhteys',
+dist = setup(name='koneetkiertoon-etayhteys',
 	version='2.3',
 	author='Otto Kekäläinen (Seravo Oy)',
 	author_email='linux-tuki@seravo.fi',
 	maintainer='Otto Kekäläinen (Seravo Oy)',
 	maintainer_email='linux-tuki@seravo.fi',
-	description='Etäyhteysohjelma Linux-tuki.fi:n asiakkaille',
-	long_description='Tämän ohjelman avulla Linux-tuen asiakkaan on helppo avata etäyhteys tukihenkilöä varten.',
-	url='http://linux-tuki.fi/',
-	download_url='http://linux-tuki.fi/etayhteys',
+	description='Etäyhteysohjelma koneetkiertoon.fi:n asiakkaille',
+	long_description='Tämän ohjelman avulla koneetkiertoon.fi:n asiakkaan on helppo avata etäyhteys tukihenkilöä varten.',
+	url='http://koneetkiertoon.fi/',
+	download_url='http://koneetkiertoon.fi/',
 	license='GNU GPL',
 	platforms='linux',
-	scripts=['bin/linux-tuki-etayhteys'],
+	scripts=['bin/koneetkiertoon-etayhteys'],
 	data_files=[
-		('share/pixmaps', ['data/lti.png']),
-		('share/applications', ['data/linux-tuki-etayhteys.desktop']),
-		('share/man/man1', ['data/linux-tuki-etayhteys.1']),
+		('share/pixmaps', ['data/koneetkiertoon-x32.png']),
+		('share/applications', ['data/koneetkiertoon-etayhteys.desktop']),
+		('share/man/man1', ['data/koneetkiertoon-etayhteys.1']),
 		]
 )
 

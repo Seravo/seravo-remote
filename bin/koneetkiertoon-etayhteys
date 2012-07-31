@@ -69,7 +69,7 @@ if (os.path.exists(PIDOF) == False):
 X11VNCTIMEOUT = 30
 
 HELPTEXT = "Muodostaa etäyhteyden, jonka " + \
-           "kautta Linux-tuki.fi:n tukihenkilö pääsee käsiksi \n" + \
+           "kautta koneetkiertoon.fi:n tukihenkilö pääsee käsiksi \n" + \
            "tietokoneeseesi ja auttaa sinua ongelman ratkaisemisessa."
 
 LOG_URL = "http://seravo.fi/seravo-remote-log"
@@ -116,11 +116,11 @@ class Etayhteys:
     
     image = gtk.Image()
     # assumes /usr always installdir
-    image.set_from_file('/usr/share/pixmaps/lti.png')
+    image.set_from_file('/usr/share/pixmaps/koneetkiertoon-x32.png')
     self.hbox_image.add(image)
 
     self.msg = gtk.Label()
-    self.msg.set_markup("Tervetuloa käyttämään Linux-tuki.fi:n etäyhteysohjelmaa,\n jonka avulla tukihenkilö voi antaa etätukea.\n\nLisätietoja sivulla <a href='http://linux-tuki.fi/etayhteys'>linux-tuki.fi/etayhteys</a>")
+    self.msg.set_markup("Tervetuloa käyttämään koneetkiertoon.fi:n etäyhteysohjelmaa,\n jonka avulla tukihenkilö voi antaa etätukea.\n\nLisätietoja sivulla <a href='http://koneetkiertoon.fi/'>koneetkiertoon.fi</a>")
     self.hbox_message.add(self.msg)
 
     avaa_btn = gtk.Button("_Avaa etäyhteys")
