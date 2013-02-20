@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 # -* coding: utf-8 *-
 
 # Linux-tuki.fi etäyhteys
@@ -39,7 +39,7 @@ except ImportError:
 
 SSHSERVER = "remote.seravo.fi"
 SSHUSER = "remote-desktop"
-SSHOPTS = ":localhost:5900"
+SSHOPTS = ":localhost:5900 -N"
 SSHPORT = random.randint(5900,5999)
 SSHPASSWD = "matti456"
 
@@ -51,6 +51,11 @@ PIDOF = "/bin/pidof"
 if (os.path.exists(PIDOF) == False):
   PIDOF = "/sbin/pidof"
 
+## Palvelin
+# Palvelimella nyt shellinä /bin/false, mutta sillä yhteyden avaus 
+# vaatii -N option. Aiemmin käytetty /usr/bin/falselogin olisi parempi
+# mutta se tekee buffer overflowt Ubuntulla, pitää odottaa että ko.
+# paketti korjataan.
 
 ## RHEL/CentOS:
 # PIDOF = "/sbin/pidof"
@@ -237,6 +242,7 @@ class Etayhteys:
       self.sammuta_x11vnc()
     
     # sammuta SSH
+    self.msg.set_markup("Katkaistaan etäyhteyttä") # ei toimi, miksi?
     log("Closing SSH connection")
     self.sammuta_ssh()
     
