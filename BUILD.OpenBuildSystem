@@ -6,14 +6,14 @@ cp debian/changelog ../osc/home\:ottokek/koneetkiertoon/debian.changelog
 cp debian/copyright ../osc/home\:ottokek/koneetkiertoon/debian.copyright
 cp debian/menu ../osc/home\:ottokek/koneetkiertoon/debian.menu
 cp debian/rules ../osc/home\:ottokek/koneetkiertoon/debian.rules
-cp dist/koneetkiertoon-etayhteys-2.3.tar.gz ../osc/home\:ottokek/koneetkiertoon/koneetkiertoon-etayhteys_2.3.tar.gz
+cp dist/koneetkiertoon-etayhteys-2.4.tar.gz ../osc/home\:ottokek/koneetkiertoon/koneetkiertoon-etayhteys_2.4.tar.gz
 
 cd ../osc/home\:ottokek/koneetkiertoon/
-osc rm koneetkiertoon-etayhteys_2.2.tar.gz
-osc add koneetkiertoon-etayhteys_2.3.tar.gz
+osc rm koneetkiertoon-etayhteys_2.3.tar.gz
+osc add koneetkiertoon-etayhteys_2.4.tar.gz
 
 # OBS changelog message
 osc vc
 
-osc commit -m "Updated to version 2.3"
+osc commit -m "Updated to version 2.4"
 

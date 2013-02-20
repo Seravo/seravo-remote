@@ -2,7 +2,7 @@ Format: 1.0
 Source: koneetkiertoon-etayhteys
 Binary: koneetkiertoon-etayhteys
 Architecture: all
-Version: 2.3
+Version: 2.4
 Maintainer: Otto Kekäläinen <otto.kekalainen@seravo.fi>
 Homepage: http://koneetkiertoon.fi/
 Standards-Version: 3.9.3

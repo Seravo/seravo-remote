@@ -1,7 +1,7 @@
 %define name koneetkiertoon-etayhteys
 %define name_path koneetkiertoon_etayhteys
-%define version 2.3
-%define unmangled_version 2.3
+%define version 2.4
+%define unmangled_version 2.4
 %define release 1
 
 Summary: Etäyhteysohjelma koneetkiertoon.fi:n asiakkaille

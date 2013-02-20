@@ -1,3 +1,9 @@
+koneetkiertoon-etayhteys (2.4) precise; urgency=low
+
+  * New server and credentials
+
+ -- Otto Kekäläinen <otto.kekalainen@seravo.fi>  Wed, 20 Feb 2013 10:54:32 +0300
+
 koneetkiertoon-etayhteys (2.3) precise; urgency=low
 
   * Bumped up one version number to distinquish from old RPM versions
