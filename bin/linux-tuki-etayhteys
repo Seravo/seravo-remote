@@ -222,9 +222,14 @@ class Etayhteys:
   
   def sammuta_ssh(self):
     if self.ssh is None: return
-    self.ssh.logout()
-    self.ssh = None
-  
+    try:
+      self.ssh.logout()
+    except Exception, e:
+      error = str(e)
+      log(error)
+      self.ssh.close()
+      self.ssh = None
+
   
   def sulje(self, widget, data=None):
     log("Closing program")
