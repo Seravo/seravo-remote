@@ -83,7 +83,7 @@ class pxsshFalselogin (pxssh.pxssh):
   """a version of pxssh that works with a falselogin shell"""
   
   def __init__(self):
-    pxssh.pxssh.__init__(self)
+    pxssh.pxssh.__init__(self, timeout=10)
   
   def set_unique_prompt(self, optional_prompt=None):
     return 1
