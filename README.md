@@ -8,3 +8,8 @@ Source at: https://github.com/Seravo/seravo-remote
 Building at: https://build.opensuse.org/package/show?package=seravo-remote&project=home%3Aottokek
 
 More info: http://linux-tuki.fi/etayhteys 
+
+Do the following to limit information output from the remote gateway system:
+```
+# touch ~remoteuser/.hushlogin
+```

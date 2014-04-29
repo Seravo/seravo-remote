@@ -84,7 +84,7 @@ class pxsshFalselogin (pxssh.pxssh):
   """a version of pxssh that works with a falselogin shell"""
   
   def __init__(self):
-    pxssh.pxssh.__init__(self)
+    pxssh.pxssh.__init__(self, timeout=10)
   
   def set_unique_prompt(self, optional_prompt=None):
     return 1
@@ -211,7 +211,7 @@ class Etayhteys:
     # onnistui, aseta kälin tila sen mukaisesti    
     log("Connection open at port %s" % SSHPORT)
     
-    self.msg.set_markup("Etäyhteys on auki portissa %s.\nNäet ruudullasi kaiken mitä tukihenkilö tekee.\nVoit sulkea etäyhteysohjelman koska tahansa." % SSHPORT)
+    self.msg.set_markup("Yhteystunnus on <span weight='bold' size='x-large'>%s</span>\nKerro tunnus tukihenkilölle.\n\nNäet ruudullasi kaiken mitä tukihenkilö tekee.\nVoit sulkea etäyhteysohjelman koska tahansa." % SSHPORT)
     
   def sammuta_x11vnc(self):
     try:
@@ -223,9 +223,14 @@ class Etayhteys:
   
   def sammuta_ssh(self):
     if self.ssh is None: return
-    self.ssh.logout()
-    self.ssh = None
-  
+    try:
+      self.ssh.logout()
+    except Exception, e:
+      error = str(e)
+      log(error)
+      self.ssh.close()
+      self.ssh = None
+
   
   def sulje(self, widget, data=None):
     log("Closing program")
