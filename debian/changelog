@@ -1,14 +1,20 @@
+linux-tuki-etayhteys (2.4.2) precise; urgency=low
+
+  * Bugfix to timeout issue plus other minor improvements
+
+ -- Otto Kekäläinen <otto@seravo.fi>  Tue, 29 Apr 2014 08:13:18 +0200
+
 linux-tuki-etayhteys (2.4.1) precise; urgency=low
 
   * Added -N option to SSH
 
- -- Otto Kekäläinen <otto@Latitude-E5420.seravo.fi>  Mon, 04 Mar 2013 09:13:18 +0200
+ -- Otto Kekäläinen <otto@seravo.fi>  Mon, 04 Mar 2013 09:13:18 +0200
 
 linux-tuki-etayhteys (2.4) precise; urgency=low
 
   * New server and credentials
 
- -- Otto Kekäläinen <otto@Latitude-E5420.seravo.fi>  Sat, 02 Mar 2013 13:13:18 +0200
+ -- Otto Kekäläinen <otto@seravo.fi>  Sat, 02 Mar 2013 13:13:18 +0200
 
 linux-tuki-etayhteys (2.3) precise; urgency=low
 

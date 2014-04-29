@@ -18,7 +18,7 @@ rm -rf dist/*
 
 
 # after updating the program itself, update the changelog with
-debchange --package linux-tuki-etayhteys -v 2.4.1
+debchange --package linux-tuki-etayhteys -v 2.4.2
 
 # packages current source as a tar.gz with version name
 # only file added to current directory is MANIFEST
@@ -26,7 +26,7 @@ python setup.py sdist
 
 export DEBFULLNAME="Otto Kekäläinen"
 export DEBEMAIL="otto.kekalainen@seravo.fi"
-export VERSION=2.4.1
+export VERSION=2.4.2
 
 cd dist
 tar -xf linux-tuki-etayhteys-$VERSION.tar.gz 
