@@ -1,3 +1,15 @@
+linux-tuki-etayhteys (2.4.1) precise; urgency=low
+
+  * Added -N option to SSH
+
+ -- Otto Kekäläinen <otto@Latitude-E5420.seravo.fi>  Mon, 04 Mar 2013 09:13:18 +0200
+
+linux-tuki-etayhteys (2.4) precise; urgency=low
+
+  * New server and credentials
+
+ -- Otto Kekäläinen <otto@Latitude-E5420.seravo.fi>  Sat, 02 Mar 2013 13:13:18 +0200
+
 linux-tuki-etayhteys (2.3) precise; urgency=low
 
   * Bumped up one version number to distinquish from old RPM versions

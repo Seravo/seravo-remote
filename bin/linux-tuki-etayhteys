@@ -37,11 +37,12 @@ except ImportError:
   print >>sys.stderr, "Voit asentaa sen komennolla: apt-get install python-pexpect"
   sys.exit(1)
 
-SSHSERVER = "linux-tuki.fi"
-SSHUSER = "etayhteys"
-SSHOPTS = ":localhost:5900"
+
+SSHSERVER = "remote.seravo.fi"
+SSHUSER = "remote-desktop"
+SSHOPTS = ":localhost:5900 -N" # must have -N as using on server /bin/false instead of /bin/falselogin
 SSHPORT = random.randint(5900,5999)
-SSHPASSWD = "jyrki123"
+SSHPASSWD = "matti456"
 
 X11VNC = "/usr/bin/x11vnc"
 KILLX11VNC = "/usr/bin/killall"

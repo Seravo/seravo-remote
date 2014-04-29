@@ -6,14 +6,14 @@ cp debian/changelog ../osc/home\:ottokek/seravo-remote/debian.changelog
 cp debian/copyright ../osc/home\:ottokek/seravo-remote/debian.copyright
 cp debian/menu ../osc/home\:ottokek/seravo-remote/debian.menu
 cp debian/rules ../osc/home\:ottokek/seravo-remote/debian.rules
-cp dist/linux-tuki-etayhteys-2.3.tar.gz ../osc/home\:ottokek/seravo-remote/linux-tuki-etayhteys_2.3.tar.gz
+cp dist/linux-tuki-etayhteys-2.4.1.tar.gz ../osc/home\:ottokek/seravo-remote/linux-tuki-etayhteys_2.4.1.tar.gz
 
 cd ../osc/home\:ottokek/seravo-remote/
-osc rm linux-tuki-etayhteys_2.2.tar.gz
-osc add linux-tuki-etayhteys_2.3.tar.gz
+osc rm linux-tuki-etayhteys_2.4.tar.gz
+osc add linux-tuki-etayhteys_2.4.1.tar.gz
 
 # OBS changelog message
 osc vc
 
-osc commit -m "Updated to version 2.3"
+osc commit -m "Updated to version 2.4.1"
 
