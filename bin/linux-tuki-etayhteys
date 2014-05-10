@@ -176,7 +176,7 @@ class Etayhteys:
       gtk.main_iteration(False)
     
     try:
-      gct = subprocess.Popen([X11VNC, "-localhost", "-nopw", "-bg"])
+      gct = subprocess.Popen([X11VNC, "-localhost", "-nopw", "-bg", "-nevershared", "-forever"])
       ret = gct.wait()
     except Exception, e:
       ret = -1
