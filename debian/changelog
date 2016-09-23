@@ -1,3 +1,9 @@
+linux-tuki-etayhteys (2.4.4) precise; urgency=low
+
+  * Bugfix to support Ubuntu 16.04
+
+ -- Otto Kekäläinen <otto.kekalainen@seravo.fi>  Fri, 23 Sep 2016 12:49:36 +0300
+
 linux-tuki-etayhteys (2.4.3) precise; urgency=low
 
   * Bugfix to support Ubuntu 14.04
