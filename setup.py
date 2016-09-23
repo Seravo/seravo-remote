@@ -23,7 +23,7 @@ from subprocess import *
 import os
 
 dist = setup(name='linux-tuki-etayhteys',
-	version='2.4.3',
+	version='2.4.4',
 	author='Otto Kekäläinen (Seravo Oy)',
 	author_email='linux-tuki@seravo.fi',
 	maintainer='Otto Kekäläinen (Seravo Oy)',
