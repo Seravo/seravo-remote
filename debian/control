@@ -11,7 +11,7 @@ XS-Python-Version: >= 2.5
 
 Package: koneetkiertoon-etayhteys
 Architecture: all
-Depends: ${misc:Depends}, ${python:Depends}, python-pexpect (>=2.1), python-gtk2, x11vnc 
+Depends: ${misc:Depends}, python-pexpect (>=2.1), python-gtk2, x11vnc
 Description: koneetkiertoon:n etäyhteys
- Tämän ohjelman avulla Koneet kiertoon asiakkaan
+ Tämän ohjelman avulla Koneet Kiertoon asiakkaan
  on helppo avata etäyhteys tukihenkilöa varten.
