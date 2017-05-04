@@ -164,7 +164,8 @@ class Etayhteys:
       log(error)
     
     # normaalisti tulee aina aikavirhe, sillä -N -optiolle SSH ei anna mitään shelliä
-    if (error != "Timeout exceeded in read_nonblocking()."):
+    if (error != "Timeout exceeded in read_nonblocking()." and error != None):
+
       self.ssh = None
       # näytä virheilmo
       self.msg.set_markup("Etäyhteyden avaus epäonnistui.")
