@@ -31,7 +31,8 @@ import platform
 import os.path
 
 try:
-  import pxssh
+  from pexpect import pxssh
+
 except ImportError:
   print >>sys.stderr, "Tämä ohjelma vaatii pexpect-moduulin."
   print >>sys.stderr, "Voit asentaa sen komennolla: apt-get install python-pexpect"
