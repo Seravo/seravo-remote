@@ -23,11 +23,11 @@ from subprocess import *
 import os
 
 dist = setup(name='koneetkiertoon-etayhteys',
-	version='2.4',
-	author='Otto Kekäläinen (Seravo Oy)',
-	author_email='linux-tuki@seravo.fi',
-	maintainer='Otto Kekäläinen (Seravo Oy)',
-	maintainer_email='linux-tuki@seravo.fi',
+	version='2.5',
+	author='Paul Vinson Brown (Koneet Kiertoon OK Oy)',
+	author_email='paul.brown@koneetkiertoon.fi',
+	maintainer='Paul Vinson Brown (Koneet Kiertoon OK Oy)',
+	maintainer_email='paul.brown@koneetkiertoon.fi',
 	description='Etäyhteysohjelma koneetkiertoon.fi:n asiakkaille',
 	long_description='Tämän ohjelman avulla koneetkiertoon.fi:n asiakkaan on helppo avata etäyhteys tukihenkilöä varten.',
 	url='http://koneetkiertoon.fi/',
@@ -54,6 +54,6 @@ if installdir:
 	installdir = os.path.join(os.path.sep,
 			installdir.replace(installroot, ""))
 
-print "\nInstallation finished! You can now run linux-tuki-etayhteys by typing 'linux-tuki-etayhteys' or through your applications menu icon."
+print "\nInstallation finished! You can now run koneetkiertoon-etayhteys by typing 'koneetkiertoon-etayhteys' or through your applications menu icon."
 	
 ## To uninstall manually delete these files/folders?
