@@ -217,8 +217,8 @@ class Etayhteys:
     # onnistui, aseta kälin tila sen mukaisesti    
     log("Connection open at port %s" % SSHPORT)
     
-    self.msg.set_markup("Etäyhteys on auki portissa %s.\nNäet ruudullasi kaiken mitä tukihenkilö tekee.\nVoit sulkea etäyhteysohjelman koska tahansa." % SSHPORT)
-    
+    self.msg.set_markup("Yhteystunnus on <span weight='bold' size='x-large'>%s</span>\nKerro tunnus tukihenkilölle.\n\nNäet ruudullasi kaiken mitä tukihenkilö tekee.\nVoit sulkea etäyhteysohjelman koska tahansa." % SSHPORT)
+
   def sammuta_x11vnc(self):
     try:
       gct = subprocess.Popen([KILLX11VNC, "x11vnc"])
