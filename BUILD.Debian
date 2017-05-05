@@ -1,4 +1,4 @@
-# The source of the program recides in this repo as is.
+# The source of the program resides in this repo as is.
 # Using these commands you can generate a plain source tar.gz
 # and from it the actual deb package.
 #
@@ -18,21 +18,21 @@ rm -rf dist/*
 
 
 # after updating the program itself, update the changelog with
-debchange --package linux-tuki-etayhteys -v 2.4
+debchange --package koneetkiertoon-etayhteys -v 2.5
 
 # packages current source as a tar.gz with version name
 # only file added to current directory is MANIFEST
 python setup.py sdist
 
-export DEBFULLNAME="Otto Kekäläinen"
-export DEBEMAIL="otto.kekalainen@seravo.fi"
-export VERSION=2.4
+export DEBFULLNAME="Paul Vinson Brown"
+export DEBEMAIL="paul.brown@koneetkiertoon.fi"
+export VERSION=2.5
 
 cd dist
-tar -xf linux-tuki-etayhteys-$VERSION.tar.gz 
-cd linux-tuki-etayhteys-$VERSION/
+tar -xf koneetkiertoon-etayhteys-$VERSION.tar.gz 
+cd koneetkiertoon-etayhteys-$VERSION/
 # only on first time
-dh_make -c gpl -i -f ../linux-tuki-etayhteys-$VERSION.tar.gz 
+dh_make -c gpl -i -f ../koneetkiertoon-etayhteys-$VERSION.tar.gz 
 
 # copy Debian files to packaging tempalte
 cp ../../debian/* debian/
@@ -42,4 +42,3 @@ debuild
 
 # Clean up before next build
 debclean
-
