@@ -108,7 +108,7 @@ class Etayhteys:
     log("Program started")
     
     self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
-    self.window.set_title("Linux-tuki.fi:n etäyhteys")
+    self.window.set_title("Koneet Kiertoon etäyhteys")
     self.window.set_position(gtk.WIN_POS_CENTER)
     
     # huolehdi että ohjelma voidaan sulkea siististi
