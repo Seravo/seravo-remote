@@ -1,3 +1,9 @@
+linux-tuki-etayhteys (2.4.5) UNRELEASED; urgency=medium
+
+  *  Packaged version 2.4.5
+
+ -- Tero Auvinen <tero@seravo.fi>  Thu, 19 Oct 2017 15:02:10 +0300
+
 linux-tuki-etayhteys (2.4.4) precise; urgency=low
 
   * Bugfix to support Ubuntu 16.04

@@ -2,7 +2,7 @@ Format: 1.0
 Source: linux-tuki-etayhteys
 Binary: linux-tuki-etayhteys
 Architecture: all
-Version: 2.4.4
+Version: 2.4.5
 Maintainer: Otto Kekäläinen <otto.kekalainen@seravo.fi>
 Homepage: http://seravo.fi/
 Standards-Version: 3.9.3
