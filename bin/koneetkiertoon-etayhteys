@@ -31,7 +31,8 @@ import platform
 import os.path
 
 try:
-  import pxssh
+  from pexpect import pxssh
+
 except ImportError:
   print >>sys.stderr, "Tämä ohjelma vaatii pexpect-moduulin."
   print >>sys.stderr, "Voit asentaa sen komennolla: apt-get install python-pexpect"
@@ -107,7 +108,7 @@ class Etayhteys:
     log("Program started")
     
     self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
-    self.window.set_title("Linux-tuki.fi:n etäyhteys")
+    self.window.set_title("Koneet Kiertoon etäyhteys")
     self.window.set_position(gtk.WIN_POS_CENTER)
     
     # huolehdi että ohjelma voidaan sulkea siististi
@@ -164,7 +165,8 @@ class Etayhteys:
       log(error)
     
     # normaalisti tulee aina aikavirhe, sillä -N -optiolle SSH ei anna mitään shelliä
-    if (error != "Timeout exceeded in read_nonblocking()."):
+    if (error != "Timeout exceeded in read_nonblocking()." and error != None):
+
       self.ssh = None
       # näytä virheilmo
       self.msg.set_markup("Etäyhteyden avaus epäonnistui.")
@@ -180,7 +182,7 @@ class Etayhteys:
       gtk.main_iteration(False)
     
     try:
-      gct = subprocess.Popen([X11VNC, "-localhost", "-nopw", "-bg"])
+      gct = subprocess.Popen([X11VNC, "-localhost", "-nopw", "-bg", "-nevershared", "-forever"])
       ret = gct.wait()
     except Exception, e:
       ret = -1
@@ -215,8 +217,8 @@ class Etayhteys:
     # onnistui, aseta kälin tila sen mukaisesti    
     log("Connection open at port %s" % SSHPORT)
     
-    self.msg.set_markup("Etäyhteys on auki portissa %s.\nNäet ruudullasi kaiken mitä tukihenkilö tekee.\nVoit sulkea etäyhteysohjelman koska tahansa." % SSHPORT)
-    
+    self.msg.set_markup("Yhteystunnus on <span weight='bold' size='x-large'>%s</span>\nKerro tunnus tukihenkilölle.\n\nNäet ruudullasi kaiken mitä tukihenkilö tekee.\nVoit sulkea etäyhteysohjelman koska tahansa." % SSHPORT)
+
   def sammuta_x11vnc(self):
     try:
       gct = subprocess.Popen([KILLX11VNC, "x11vnc"])

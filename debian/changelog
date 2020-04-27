@@ -1,3 +1,10 @@
+koneetkiertoon-etayhteys (2.5) UNRELEASED; urgency=medium
+
+  * Caught up to main Seravo version, including support for 16.04, some old 
+    lingering linux-tuki bits updated to be koneetkiertoon, some author changes.
+
+ -- Paul Vinson Brown <paul.brown@koneetkiertoon.fi>  Fri, 05 May 2017 07:59:53 +0300
+
 koneetkiertoon-etayhteys (2.4) precise; urgency=low
 
   * New server and credentials
